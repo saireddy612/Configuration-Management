@@ -31,3 +31,103 @@ will execute there.
 
 4. Ansible.cfg
 >Consists of paramaters, where it will give details of all variables (any data)
+
+How to connect the Ansible Control Machine with Host Machine.
+1. create two instances on amazon with the same key pair, name them as ACM, Host.
+2. connect the instances through the terminal and give the hostname ACM, hostname Host commands
+3. Now install ansible on both VM's, start with ACM
+ > yum install epel-release
+ > sudo amazon-linux-extras install epel
+ > yum install ansible
+ > vim /etc/ssh/sshd_config
+  >Now remove # at password authentication: yes
+  >place # at password authentication: No
+  >:wq!
+ >passwd ec-user
+  >Now create password and retype it
+ >vim /etc/sudoers
+  >scroll down, under root add like this  ec2-user ALL=NOPASSWD: ALL
+  >:wq!
+  > systemctl restart sshd
+4. Repeat the step no.3 on the host machine
+5. ON ACM enter into the ec-user, su - ec2-user
+  > ssh-keygen
+  > press enter for 3 times
+  > ssh-copy-id -i ec-user@(private IP of HOST)
+  >asks for password which we entered earlier
+  >Now SSH connection is done, will a ssh command, using that we can shift to host machine from ACM machine directly
+   with copy and pasting the ssh command on the ACM user itself.
+  >exit for coming out of the host machine
+
+How to create Inventory:
+vim /etc/ansible/hosts
+sudo vim hosts
+> #Example 1
+  172.31.14.67(individual IP address of server)
+  [webserver]
+  172.31.14.67(IP address of the host machine)(this format used for group servers)
+  :wq!
+
+How to create Modules:
+Module1. adhoc ping command
+> ansible -m ping webservers
+response will be a pong from all hosts under webservers
+
+Module2 : command
+> ansible -m command -a "uptime" webservers
+will give the uptime of hosts in webservers
+
+Module3 (creating an empty file on the host from Ansible control Machine)
+> ansible webserver -m command -a "touch /tmp/saireddy"
+> ansible webserver -m command -a "ls -al /tmp"
+
+To chekc all modules in ansible
+> ansible-doc -l
+use up arrow key and down arrow key to scroll up and down.
+press q to exit
+
+Install a tomcat package on host server using the playbook:
+> sudo vim playboktomcat.yml
+ > - hosts: webserver
+  become: true
+  become_user: root
+  tasks:
+    - name: Install tomcat on host server
+      yum: name=tomcat state=present
+    - name: Start tomcat service
+      service: name=tomcat state=started
+> ansible-playbook playbooktomcat.yml --syntax-check
+> ansible-playbook playbooktomcat.yml
+
+                                          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
