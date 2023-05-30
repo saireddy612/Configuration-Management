@@ -23,3 +23,11 @@ desired location also.
 2. Modules
 >Modules are python programs that are already written and provided to you by Ansible. When you exectute these modules, 
 ansible will go and make changes on desired host servers
+
+3. Playbook
+> It is the combination of Modules and inventory. which is used to perform the ansible tasks and the code is written
+in YAML, and the code will convert into the python code and will transfers to the host server using SSH. Python code
+will execute there.
+
+4. Ansible.cfg
+>Consists of paramaters, where it will give details of all variables (any data)
