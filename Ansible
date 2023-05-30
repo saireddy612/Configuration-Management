@@ -1,0 +1,25 @@
+Scenario:
+A 100 servers need to create and install 2 packages on each server and each package takes a 5 min for the 100 servers it 
+will take 1000 min to install and it is done manually, In order to overcome this we use an automation tool
+called Ansible and processed by the configruation management.
+Provisioning: creating a VM's
+Configuration: making changes on VM's
+
+ANSIBLE:
+It is an automation tool used to control the VM's. and it will be installed on a single virtual machine and it control
+the rest of VM's and it can not work on windows, it needs python >=2.7 to be installed on the VM's. Here we will have
+Anible Controller Machine and Host(Ubuntu, Centos, Windows), Ansible doesn't install on the Host Machines and it is an
+agentless toll. Ansible connects the Host using secure shell.
+
+Ansible Controller Machine:
+1. Inventory
+>It is a file , in which user will enter the public/private IP address of the host servers where changes have
+to be done. The default location of this file is at /etc/ansible/hosts. User can also create the inventory file at particular
+desired location also.
+> There are two types of inventroy fieles:
+>Static inventory - insert the IP address manually.
+>Dynamic inventory - As the server gets created it will take IP addresses automatically.
+
+2. Modules
+>Modules are python programs that are already written and provided to you by Ansible. When you exectute these modules, 
+ansible will go and make changes on desired host servers
