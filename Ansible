@@ -53,7 +53,7 @@ How to connect the Ansible Control Machine with Host Machine.
 5. ON ACM enter into the ec-user, su - ec2-user
   > ssh-keygen
   > press enter for 3 times
-  > ssh-copy-id -i ec-user@(private IP of HOST)
+  > ssh-copy-id -i ec2-user@(private IP of HOST)
   >asks for password which we entered earlier
   >Now SSH connection is done, will a ssh command, using that we can shift to host machine from ACM machine directly
    with copy and pasting the ssh command on the ACM user itself.
@@ -64,7 +64,7 @@ vim /etc/ansible/hosts
 sudo vim hosts
 > #Example 1
   172.31.14.67(individual IP address of server)
-  [webserver]
+  [webservers]
   172.31.14.67(IP address of the host machine)(this format used for group servers)
   :wq!
 
@@ -78,8 +78,8 @@ Module2 : command
 will give the uptime of hosts in webservers
 
 Module3 (creating an empty file on the host from Ansible control Machine)
-> ansible webserver -m command -a "touch /tmp/saireddy"
-> ansible webserver -m command -a "ls -al /tmp"
+> ansible webservers -m command -a "touch /tmp/saireddy"
+> ansible webservers -m command -a "ls -al /tmp"
 
 To chekc all modules in ansible
 > ansible-doc -l
