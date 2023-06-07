@@ -43,7 +43,7 @@ How to connect the Ansible Control Machine with Host Machine.
   >Now remove # at password authentication: yes
   >place # at password authentication: No
   >:wq!
- >passwd ec-user
+ >passwd ec2-user
   >Now create password and retype it
  >vim /etc/sudoers
   >scroll down, under root add like this  ec2-user ALL=NOPASSWD: ALL
