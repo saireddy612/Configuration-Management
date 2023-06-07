@@ -99,6 +99,31 @@ Install a tomcat package on host server using the playbook:
 > ansible-playbook playbooktomcat.yml --syntax-check
 > ansible-playbook playbooktomcat.yml
 
+Variable:
+It is used to overcome the hardcode in the yml file, it has some storage to keep the data interms of value. variables
+are declared at the vars block in the playbook.yml file 
+Usage: var1 = value1
+       var2 = value2
+       {{variable_name}}--------while using the variable in the yml code
+ Example:
+ 
+ vars:
+    repo_var: https://github.com/Sonal0409/AnsibleDockerdemo.git
+    dest_var: /tmp/myrepo
+
+vars_promt:
+command is used for prompt asking about the image name when we are executing the ansible playbook.
+
+example:
+vars_prompt:
+ - name: image_name
+   prompt: enter image name
+   private: false
+
+Install a packages and building the container on the host machine:
+> sudo vim playbookdockergit.yml
+ > 
+
                                           
 
 
